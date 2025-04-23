@@ -16,17 +16,23 @@ abstract class Model {
     }
 
     public function query($query, $data = []) {
-        $con = $this->connect();
-        $stm = $con->prepare($query);
-        $check = $stm->execute($data);
-        if ($check) {
-            //return as an associated array
-            $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
-            if (is_array($result) && count($result)) {
-                return $result;
+        try {
+            $con = $this->connect();
+            $stm = $con->prepare($query);
+            $check = $stm->execute($data);
+    
+            if (!$check) {
+                $error = $stm->errorInfo();
+                return ['error' => $error];
             }
+    
+            $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+            return count($result) ? $result : true;
+        } catch (\PDOException $e) {
+            return ['exception' => $e->getMessage()];
         }
-        return false;
     }
+    
+    
 
 }

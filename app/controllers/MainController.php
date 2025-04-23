@@ -6,12 +6,30 @@ namespace app\controllers;
 class MainController extends Controller {
 
     public function homepage() {
-        //remember to route relative to index.php
-        //require page and exit to return an HTML page
-        $this->returnView('./assets/views/main/homepage.html');
+        $this->returnView('./assets/views/main/notesView.html');
+    }
+    
+    public function about() {
+        $this->returnView('./assets/views/main/about.html');
+    }
+    
+    public function contact() {
+        $this->returnView('./assets/views/main/contact.html');
     }
 
-    public function notFound() {
+    public function notfound() { 
+        $this->returnView('./assets/views/main/notFound.html');
     }
 
+    public function login() {
+        $this->returnView('./assets/views/user/login.html');
+    }
+    
+    public function register() {
+        $this->returnView('./assets/views/user/register.html');
+    }
+    
+    public function userNotes() {
+        $this->returnView('./assets/views/user/userNotes.html'); 
+    }
 }

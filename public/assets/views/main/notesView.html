@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SocialNotes - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/styles/notes.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><i class="fas fa-comment-dots"></i> SocialNotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="title">SocialNotes</h1>
+        <p></p>
+        <p class="subtitle">Create and share notes with others.</p>
+        <div id="userInfo" class="d-none text-center mb-2"></div>
+        <div class="text-center mb-5">
+            <a href="/your-notes" class="view-your-notes-btn d-none"><i class="fas fa-user-edit"></i> Your Notes</a>
+            <button id="logoutBtn" class="logout-btn d-none"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+
+        <!-- login prompt for non-logged-in users -->
+        <div id="loginPrompt" class="login-prompt d-none">
+            <h4><i class="fas fa-lock"></i> Please log in to create notes</h4>
+            <p>You need to be logged in to create, edit, and delete notes.</p>
+            <div class="mt-4">
+                <a href="/login" class="btn btn-outline-info me-2"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="/register" class="btn btn-outline-info"><i class="fas fa-user-plus"></i> Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="note-container" id="noteBoard">
+            <button class="create-note" id="createBtn"><i class="fas fa-plus"></i></button>
+        </div>
+    </main>
+
+    <!-- toast for notis -->
+    <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/notes.js"></script>
+</body>
+</html>
