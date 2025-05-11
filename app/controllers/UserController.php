@@ -35,6 +35,7 @@ class UserController extends Controller {
                 'success' => false,
                 'errors' => $errors
             ]);
+            return; 
         }
         
         $userModel = new User();
@@ -45,9 +46,11 @@ class UserController extends Controller {
                 'success' => false,
                 'errors' => ['username' => $result['error']]
             ]);
+            return; 
         }
         
         $this->returnJSON(['success' => true]);
+        return; 
     }
     
     public function login() {
