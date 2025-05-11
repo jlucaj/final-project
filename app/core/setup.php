@@ -11,12 +11,22 @@ require '../app/models/User.php';
 require '../app/controllers/UserController.php';
 
 //set up env variables
-$env = parse_ini_file('../.env');
-
-define('DBNAME', $env['DBNAME']);
-define('DBHOST', $env['DBHOST']);
-define('DBUSER', $env['DBUSER']);
-define('DBPASS', $env['DBPASS']);
+$envFile = '../.env';
+if (file_exists($envFile)) {
+    $env = parse_ini_file($envFile);
+    define('DBHOST', $env['DBHOST']);
+    define('DBNAME', $env['DBNAME']);
+    define('DBUSER', $env['DBUSER']);
+    define('DBPASS', $env['DBPASS']);
+    define('DBPORT', $env['DBPORT'] ?? '3306');
+} else {
+    // fallback for production (Heroku)
+    define('DBHOST', getenv('DBHOST'));
+    define('DBNAME', getenv('DBNAME'));
+    define('DBUSER', getenv('DBUSER'));
+    define('DBPASS', getenv('DBPASS'));
+    define('DBPORT', getenv('DBPORT') ?: '3306');
+}
 
 // session/cookie setup 
 ini_set('session.gc_maxlifetime', 3600); // set session timeout to 1 hour (3600 seconds)
