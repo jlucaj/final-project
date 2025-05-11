@@ -63,20 +63,22 @@ class PostController extends Controller {
         $post = $postModel->getPostById($id);
         if (!$post) {
             $this->returnJSON(['success' => false, 'error' => 'Note not found']);
+            return;
         }
-        
-        // update post only if it belongs to current user
+
+        if ($post['username'] !== $username) {
+            $this->returnJSON(['success' => false, 'error' => 'You can only edit your own notes']);
+            return;
+        }
+
         $result = $postModel->updatePost($id, $content, $mood, $username);
-        
         if ($result === true) {
             $this->returnJSON(['success' => true]);
-        } else {
-            $this->returnJSON([
-                'success' => false, 
-                'error' => 'You can only edit your own notes'
-            ]);
         }
+
+        $this->returnJSON(['success' => false, 'error' => 'Failed to update note']);
     }
+
 
     public function deletePost($id) {
         // only logged in users can delete posts
