@@ -27,7 +27,7 @@ abstract class Model {
             }
 
             $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
-            return count($result) ? $result : true;
+            return $result;
         } catch (\PDOException $e) {
             return ['exception' => $e->getMessage()];
         }
