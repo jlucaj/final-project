@@ -72,7 +72,7 @@ class PostController extends Controller {
         }
 
         $result = $postModel->updatePost($id, $content, $mood, $username);
-        if ($result === true) {
+        if ($result === true || $result === []) {
             $this->returnJSON(['success' => true]);
         }
 
