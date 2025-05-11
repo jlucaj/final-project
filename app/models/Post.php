@@ -3,7 +3,7 @@
 namespace app\models;
 
 class Post extends Model {
-    protected $table = 'notes';
+    protected $table = 'posts';
 
     public function getAllPosts() {
         return $this->findAll();
